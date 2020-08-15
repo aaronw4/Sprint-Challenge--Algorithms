@@ -99,17 +99,25 @@ class SortingRobot:
         
         self.swap_item()
         while self.light_is_on() == False:
+            #Moves biggest number all the way to the right
             while self.can_move_right() == True:
                 self.move_right()
                 if self.compare_item() == -1:
                     self.swap_item()
+            # If number gets all of the way to the right and it is not the biggest,
+            # it will work its way backwards to find its correct space
             while self.compare_item() == None or self.compare_item() > -1:
                 if self.compare_item() == 1:
                     self.swap_item()
                 self.move_left()
+                # if it get all the way to the beginning then it is the smallest number.
+                # if it swaps the 1st position, which is None,
+                # then the last and smallest number has been placed and the sort ends.
                 if self.compare_item() == None:
                     self.swap_item()
                     return self.set_light_on()
+            # if number is smaller on the reverse trip, 
+            # then we will swap and not go back to the beginning
             self.swap_item()
 
 
