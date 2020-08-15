@@ -96,11 +96,10 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        #This works with a run time of 78 seconds!
+        
         self.swap_item()
-        while self._item != None:
+        while self.light_is_on() == False:
             while self.can_move_right() == True:
-                print(self._item, self._list)
                 self.move_right()
                 if self.compare_item() == -1:
                     self.swap_item()
@@ -108,12 +107,10 @@ class SortingRobot:
                 if self.compare_item() == 1:
                     self.swap_item()
                 self.move_left()
-                print(self._item, self._list)
                 if self.compare_item() == None:
                     self.swap_item()
                     return self._list
             self.swap_item()
-            self._position = 0
         return self._list
 
 
